@@ -9,7 +9,8 @@ import os
 mp_drawing = mp.solutions.drawing_utils
 mp_pose = mp.solutions.pose
 
-cap = cv2.VideoCapture("ouput.avi");
+cap = cv2.VideoCapture("push_up.mp4");
+class_name = "push_up"
 
 with mp_pose.Pose(
     static_image_mode = False) as pose:
@@ -27,13 +28,28 @@ with mp_pose.Pose(
                 mp_pose.POSE_CONNECTIONS,
                 mp_drawing.DrawingSpec(color=(255, 255, 255), circle_radius =3),
                )
-
-         
-
         cv2.imshow("frame", frame)
         if cv2.waitKey(1) & 0xFF == 27:
             break
 
+try:
+            # Extract Pose landmarks
+    pose = results.pose_landmarks.landmark
+    pose_row = list(np.array([[landmark.x, landmark.y, landmark.z] for landmark in pose]).flatten())
+    row = pose_row
+    
+    # Append class name 
+    row.insert(0, class_name)
+    
+    # Export to CSV
+    with open('coords.csv', mode='a', newline='') as f:
+        csv_writer = csv.writer(f, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        csv_writer.writerow(row) 
+except:
+    pass
+
+
+print('termino')
 cap.release()
 cv2.destroyAllWindows()
             
