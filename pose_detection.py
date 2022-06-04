@@ -7,8 +7,8 @@ import numpy as np
 mp_drawing = mp.solutions.drawing_utils # Drawing helpers
 mp_holistic = mp.solutions.holistic # Mediapipe Solutions
 
-class_name= "squat"
-cap = cv2.VideoCapture("squat2.mp4")
+class_name= "Sit Ups"
+cap = cv2.VideoCapture("Sit Ups 3.mp4")
 # Initiate holistic model
 with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
     
