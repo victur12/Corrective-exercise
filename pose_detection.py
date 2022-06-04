@@ -7,8 +7,8 @@ import numpy as np
 mp_drawing = mp.solutions.drawing_utils # Drawing helpers
 mp_holistic = mp.solutions.holistic # Mediapipe Solutions
 
-class_name= "Sit Ups"
-cap = cv2.VideoCapture("Sit Ups 3.mp4")
+class_name= "jumping jacks"
+cap = cv2.VideoCapture("angulos.mp4")
 # Initiate holistic model
 with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
     
@@ -50,7 +50,6 @@ with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=
             with open('coords.csv', mode='a', newline='') as f:
                 csv_writer = csv.writer(f, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
                 csv_writer.writerow(row) 
-            
         except:
             pass
                         
@@ -58,6 +57,5 @@ with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=
 
         if cv2.waitKey(10) & 0xFF == ord('q'):
             break
-
 cap.release()
 cv2.destroyAllWindows()

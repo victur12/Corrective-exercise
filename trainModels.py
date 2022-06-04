@@ -13,7 +13,7 @@ y = df['class']
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=1234)
 
-df[df['class']=='squat']
+df[df['class']=='Sit Ups']
 
 pipelines = {
     'lr':make_pipeline(StandardScaler(), LogisticRegression()),
