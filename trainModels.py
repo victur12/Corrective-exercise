@@ -11,12 +11,12 @@ df = pd.read_csv('coords.csv')
 X = df.drop('class', axis=1) 
 y = df['class']
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=1234)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.5, train_size= 0.5, random_state=1234)
 
 df[df['class']=='squat']
 
 pipelines = {
-    'lr':make_pipeline(StandardScaler(), LogisticRegression()),
+    'lr':make_pipeline(StandardScaler(), LogisticRegression(solver='lbfgs', max_iter=10000)),
     'rc':make_pipeline(StandardScaler(), RidgeClassifier()),
     'rf':make_pipeline(StandardScaler(), RandomForestClassifier()),
     'gb':make_pipeline(StandardScaler(), GradientBoostingClassifier()),

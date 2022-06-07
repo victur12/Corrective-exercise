@@ -10,7 +10,7 @@ with open('exercises.pkl', 'rb') as f:
 mp_drawing = mp.solutions.drawing_utils 
 mp_holistic = mp.solutions.holistic 
 
-cap = cv2.VideoCapture("squat3.mp4")
+cap = cv2.VideoCapture("push_up2.mp4")
 with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
     
     while cap.isOpened():
@@ -42,7 +42,7 @@ with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=
             X = pd.DataFrame([row])
             body_language_class = model.predict(X)[0]
             body_language_prob = model.predict_proba(X)[0]
-            print(body_language_class, body_language_prob)
+            # print(body_language_class, body_language_prob)
             
             # Grab ear coords
             coords = tuple(np.multiply(
